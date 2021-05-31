@@ -81,7 +81,7 @@ const QuizOver = React.forwardRef((props, ref) => {
         (
             <tr>
                 <td colSpan="3">
-                    <p style={{textAlign: 'center', color: 'red'}}>T'es null ! Rien à afficher connard !</p>
+                    <p style={{textAlign: 'center', color: 'red'}}>T'es vraiment null ! Rien à afficher connard !</p>
                 </td>
             </tr>
 
