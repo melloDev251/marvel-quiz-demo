@@ -5,6 +5,7 @@ import Levels from "../components/Levels";
 import ProgressBar from "../components/ProgressBar";
 import { QuizMarvel } from "../components/QuizMarvel";
 import QuizOver from './QuizOver';
+import { FaChevronCircleRight } from 'react-icons/fa';
 
 // config alert toastify
 toast.configure();
@@ -192,7 +193,7 @@ class Quiz extends Component {
                     key={index}
                     className={`answerOptions ${this.state.userAnswer === option ? "selected" : null}`}
                     onClick={() => this.submitAnswer(option)}>
-                    {option}
+                    <FaChevronCircleRight />  {option}
                 </p>
             );
         });

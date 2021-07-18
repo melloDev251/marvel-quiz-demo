@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FirebaseContext } from "../firebase";
+import ReactTooltip from 'react-tooltip';
 
 
 const LogOut = () => {
@@ -8,11 +9,11 @@ const LogOut = () => {
   const firebase = useContext(FirebaseContext);
 
   console.log(checked);
-  
-  useEffect(()=>{
-    if(checked) {
-        firebase.signOutUser();
-        console.log("déconnexion");
+
+  useEffect(() => {
+    if (checked) {
+      firebase.signOutUser();
+      console.log("déconnexion");
     }
   }, [checked])
 
@@ -24,8 +25,9 @@ const LogOut = () => {
     <div className="logoutContainer">
       <label className="switch">
         <input onChange={handleChange} type="checkbox" checked={checked} />
-        <span className="slider round"></span>
+        <span data-tip="DECONNEXION" className="slider round"></span>
       </label>
+      <ReactTooltip place="left" type="dark" effect="solid" />
     </div>
   );
 };

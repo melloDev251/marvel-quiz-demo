@@ -42,7 +42,7 @@ const Welcome = (props) => {
   return userSession === null ? (
     <Fragment>
       <div className="loader"></div>
-      <p>Loading...</p>
+      <p className="loaderText">Please Wait...</p>
     </Fragment>
   ) : (
     <div className="quiz-bg">

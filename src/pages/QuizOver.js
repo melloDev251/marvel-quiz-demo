@@ -1,4 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { GiTrophyCup } from 'react-icons/gi'
+import Modal from '../components/Modal';
+import axios from 'axios';
 
 
 const QuizOver = React.forwardRef((props, ref) => {
@@ -13,10 +16,33 @@ const QuizOver = React.forwardRef((props, ref) => {
         loadLevelQuestion
     } = props;
 
-    // console.log(props, ref);
+    const API_MARVEL = process.env.REACT_APP_MARVEL_API_KEY;
+    console.log(API_MARVEL);
 
-    const [asked, setAsked] = useState([])
+    const hash = '9092f81cef7ae9942b916c13c4d6b2ef';
+
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const [asked, setAsked] = useState([]);
     // console.log(asked);
+
+    const showModal = (id) => {
+        setOpenModal(true);
+
+        axios
+            .get(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${API_MARVEL}&hash=${hash}`)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(() => {
+
+            })
+    }
+
+    const hideModal = () => {
+        setOpenModal(false);
+    }
 
     useEffect(() => {
         setAsked(ref.current)
@@ -48,7 +74,7 @@ const QuizOver = React.forwardRef((props, ref) => {
                         :
                         (
                             <Fragment>
-                                <p className="successMsg">Bravo, vous êtes un expert !</p>
+                                <p className="successMsg"> <GiTrophyCup size='50px' /> Bravo, vous êtes un expert !</p>
                                 <button
                                     onClick={() => loadLevelQuestion(0)}
                                     className="btnResult gameOver">
@@ -91,7 +117,11 @@ const QuizOver = React.forwardRef((props, ref) => {
                     <td> {item.question} </td>
                     <td> {item.answer} </td>
                     <td>
-                        <button className="btnInfo">Infos</button>
+                        <button
+                            onClick={() => showModal(item.heroId)}
+                            className="btnInfo">
+                            Infos
+                        </button>
                     </td>
                 </tr>
             )
@@ -134,6 +164,10 @@ const QuizOver = React.forwardRef((props, ref) => {
                     </tbody>
                 </table>
             </div>
+
+            <Modal showModal={openModal} hideModal={hideModal}>
+
+            </Modal>
 
         </Fragment>
     );

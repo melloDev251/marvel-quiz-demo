@@ -10,22 +10,25 @@ import Landing from "../pages/Landing";
 import Footer from "./Footer";
 import Header from "./Header";
 import ForgetPass from '../pages/ForgetPass';
+import { IconContext } from 'react-icons'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
+      <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
+        <Header />
 
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/welcome" component={Welcome} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/forget_password" component={ForgetPass} />
-        <Route component={ErrorPage} />
-      </Switch>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/welcome" component={Welcome} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/forget_password" component={ForgetPass} />
+          <Route component={ErrorPage} />
+        </Switch>
 
-      <Footer />
+        <Footer />
+      </IconContext.Provider>
     </BrowserRouter>
   );
 };
