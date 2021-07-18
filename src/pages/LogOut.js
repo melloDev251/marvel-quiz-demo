@@ -15,7 +15,7 @@ const LogOut = () => {
       firebase.signOutUser();
       console.log("déconnexion");
     }
-  }, [checked])
+  }, [checked, firebase])
 
   const handleChange = (e) => {
     setChecked(e.target.checked);
